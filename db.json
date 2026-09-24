@@ -1,0 +1,50 @@
+{
+  "112": {
+    "name": "Surya",
+    "address": "Hyderabad",
+    "age": 20,
+    "branch": "CSe",
+    "year": 3,
+    "sem": 5
+  },
+  "123": {
+    "name": "Mokshith",
+    "address": "Hyderabad",
+    "age": 20,
+    "branch": "CSM",
+    "year": 3,
+    "sem": 5
+  },
+  "124": {
+    "name": "Shashi",
+    "age": 20,
+    "branch": "CSM",
+    "year": 3,
+    "address": "Hyderabad",
+    "sem": 5
+  },
+  "125": {
+    "name": "Akshar",
+    "address": "Hyderabad",
+    "age": 20,
+    "branch": "CSM",
+    "year": 3,
+    "sem": 5
+  },
+  "126": {
+    "name": "Rishwik",
+    "address": "Paris",
+    "age": 20,
+    "branch": "CSM",
+    "year": 3,
+    "sem": 5
+  },
+  "127": {
+    "name": "Karthik",
+    "address": "Mumbai",
+    "age": 20,
+    "branch": "CSE",
+    "year": 3,
+    "sem": 5
+  }
+}

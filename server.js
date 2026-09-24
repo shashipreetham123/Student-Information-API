@@ -11,7 +11,10 @@ function loadDB(req, res, next) {
     try {
         const data = JSON.parse(fs.readFileSync("./db.json", "utf-8"))
 
+        const fields = JSON.parse(fs.readFileSync("./fields.json", 'utf-8'))
+
         req.db = data
+        req.fields = fields
 
         next()
 
@@ -33,7 +36,7 @@ app.get("/api/student", (req, res) => {
 })
 
 app.get("/api/student/:id", (req, res) => {
-    
+
     const studentData = req.db
 
     const rollNo = req.params.id
@@ -64,7 +67,7 @@ app.post("/api/student", (req, res) => {
 
     const { name, rollNo, address, age, branch, year, sem } = req.body
 
-    if ( !name || !rollNo || !address || !age || !branch || !year || !sem) {
+    if (!name || !rollNo || !address || !age || !branch || !year || !sem) {
         res.status(400).json({
             "message": "Fields are Required",
             "data": null
@@ -101,7 +104,7 @@ app.put("/api/student/:id", (req, res) => {
 
     const data = req.body
 
-    if ( !data ) {
+    if (!data) {
         res.status(400).json({
             "message": "Fields are Required",
             "data": null
@@ -109,6 +112,17 @@ app.put("/api/student/:id", (req, res) => {
 
         return
     }
+
+    Object.keys(data).forEach(key => {
+        if (!req.fields.includes(key.toLowerCase())) {
+            res.status(400).json({
+                "message": `Unknown Key ${key} has sent`,
+                "data": null
+            })
+
+            return
+        }
+    })
 
     if (!studentData[rollNo]) {
         res.json({
@@ -119,7 +133,7 @@ app.put("/api/student/:id", (req, res) => {
         return
     }
 
-    studentData[rollNo] = { ...studentData[rollNo],  ...data}
+    studentData[rollNo] = { ...studentData[rollNo], ...data }
 
     res.status(201).json({
         "message": "Student Updated Successfully",
@@ -145,7 +159,7 @@ app.delete("/api/student/:id", (req, res) => {
         return
     }
 
-    const copy = {...studentData[rollNo]}
+    const copy = { ...studentData[rollNo] }
 
 
     delete studentData[rollNo]
